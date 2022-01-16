@@ -1,16 +1,16 @@
 # Basic Spring Boot Microservice
 
-A basic Spring Boot microservice. Please read all the comments properly. May start building a boiler-plate on top of this.
+A basic Spring Boot microservice (This is for basic concepts. Codebase is not production ready). Please read all the comments properly. May start building a boiler-plate on top of this.
 
 ## Project Details
 
 - **Specialization** Common exception handler for all controllers `basic.exceptions.CustomResponseExceptionHandler`.
 
-- **Request Validations** Handled inside beans `basic.models.Users` with `@Valid` at the controller level. Refer `basic.exceptions.CustomResponseExceptionHandler.handleMethodArgumentNotValid`. Dependency required `spring-boot-starter-validation`.
+- **Request Validations** Handled inside beans `basic.models.User` with `@Valid` at the controller level. Refer `basic.exceptions.CustomResponseExceptionHandler.handleMethodArgumentNotValid`. Dependency required `spring-boot-starter-validation`.
 
-- **HATEOAS** Allows you to add reference links with the response without hard-coding URIs. See `basic.resources.fetchOneUser` response having link to `basic.resources.fetchUsers` method. URIs are picked from the mappings automatically. Dependency required `spring-boot-starter-hateoas`.
+- **HATEOAS** Allows you to add reference links with the response without hard-coding URIs. See `basic.resources.UserResourcesImpl.fetchOneUser` response having link to `basic.resources.UserResourcesImpl.fetchUsers` method. URIs are picked from the mappings automatically. Dependency required `spring-boot-starter-hateoas`.
 
-- **Internationalization** Refer `basic.resources.internationalized` and `basic.resources.internationalizedContext` and all the `messages` property files. Make sure to include `Accept-Language` in request header.
+- **Internationalization** Refer `basic.resources.InternationalizedResources.internationalized` and `basic.resources.InternationalizedResources.internationalizedContext` and all the `messages` property files. Make sure to include `Accept-Language` in request header.
 
 - **Content Negotiation** While making the call ensure to add `Accept: application/xml` and it will return XML instead of JSON. Dependency required `com.fasterxml.jackson.dataformat`.
 
@@ -18,11 +18,11 @@ A basic Spring Boot microservice. Please read all the comments properly. May sta
 
 - **Actuator** Provides production read metrics, heap dumps, jvm, loggers, thread dumps, mapping, etc. Refer properties for wildcard web exposure. [actuator-docs](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html). Dependency added `spring-boot-starter-actuator`. [actuator-endpoint](http://localhost:8080/actuator)
 
-- **HAL Explorer** Bundles features of Swagger UI and visualizes raw JSON such as `/actuator`. Dependency added `spring-data-rest-hal-explorer`. Just go to localhost:8080.
+- **HAL Explorer** Bundles features of Swagger UI and visualizes raw JSON such as `/actuator`. Dependency added `spring-data-rest-hal-explorer`. Just go to [localhost](localhost:8080).
 
-- **Static filtering** To ignore particular data members use @JsonIgnore or @JsonIgnoreProperties. Refer `basic.models.ConfigsStaticFilter` and `basic.models.Configs.FilteredResources`.
+- **Static filtering** To ignore particular data members use @JsonIgnore or @JsonIgnoreProperties. Refer `basic.models.ConfigsStaticFilter` and `basic.resources.FilteredResources`.
 
-- **Dynamic Filtering** Filters are applied when the beans are fetched. Refer `basic.models.ConfigsDynamicFilter` and `basic.models.Configs.FilteredResources`.
+- **Dynamic Filtering** Filters are applied when the beans are fetched. Refer `basic.models.ConfigsDynamicFilter` and `basic.resources.FilteredResources`.
 
 - **Versioning** Different companies use different approaches. All are discussed under the `versioning` package.
 

@@ -1,7 +1,9 @@
 package com.shishodia.microservice.basic.versioning;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /*
@@ -34,12 +36,12 @@ public class VersioningResource {
      * Disadv.: URI pollution, Difficult documentation.
      */
     @GetMapping(value = "person/param", params = "version=1")
-    public PersonV1 personParamV1() {
+    public PersonV1 personParamV1(@RequestParam Integer version) {
         return new PersonV1("Shivam Shishodia");
     }
 
     @GetMapping(value = "person/param", params = "version=2")
-    public PersonV2 personParamV2() {
+    public PersonV2 personParamV2(@RequestParam Integer version) {
         return new PersonV2(new Name("Shivam", "Shishodia"));
     }
 
@@ -51,14 +53,15 @@ public class VersioningResource {
      * Adv.: Easy documentation.
      */
     @GetMapping(value = "person/header", headers = "X-API-VERSION=1")
-    public PersonV1 personHeaderV1() {
+    public PersonV1 personHeaderV1(@RequestHeader("X-API-VERSION") Integer apiVersion) {
         return new PersonV1("Shivam Shishodia");
     }
 
-    @GetMapping(value = "person/header", headers = "X-API-VERSION=2")
-    public PersonV2 personHeaderV2() {
-        return new PersonV2(new Name("Shivam", "Shishodia"));
-    }
+    // TODO: Commented as Swagger UI breaks due to this
+    // @GetMapping(value = "person/header", headers = "X-API-VERSION=2")
+    // public PersonV2 personHeaderV2(@RequestHeader("X-API-VERSION") Integer apiVersion) {
+    //     return new PersonV2(new Name("Shivam", "Shishodia"));
+    // }
 
     /*
      * Produces based versioning. Also called Media type versioning (Github).
