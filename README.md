@@ -1,6 +1,6 @@
-# Basic Spring Boot Microservice
+# Basic Spring Boot RESTful Web Service
 
-A basic Spring Boot microservice (This is for basic concepts. Codebase is not production ready). Please read all the comments properly. May start building a boiler-plate on top of this.
+A basic Spring Boot RESTful web service (This is for basic concepts. Codebase is not production ready). Please read all the comments properly. May start building a boiler-plate on top of this.
 
 ## Project Details
 
