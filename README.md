@@ -14,7 +14,7 @@ A basic Spring Boot microservice (This is for basic concepts. Codebase is not pr
 
 - **Content Negotiation** While making the call ensure to add `Accept: application/xml` and it will return XML instead of JSON. Dependency required `com.fasterxml.jackson.dataformat`.
 
-- **Swagger** Refer [springdoc-openapi](https://springdoc.org/) and include dependency `org.springdoc`. Swagger UI located at [swagger-ui](http://localhost:8080/swagger-ui.html). Swagger docs are located at [api-docs](http://localhost:8080/v3/api-docs). Provides server info, paths, schemas and components.
+- **Swagger** Refer [springdoc-openapi](https://springdoc.org/) and include dependency `org.springdoc`. Swagger UI located at [swagger-ui](http://localhost:8080/swagger-ui.html). Swagger docs are located at [api-docs](http://localhost:8080/v3/api-docs). Provides server info, paths, schemas and components. For migration from Springfox Swagger 2 to Springdoc Open API look [stackoverflow](https://stackoverflow.com/questions/59291371/migrating-from-springfox-swagger-2-to-springdoc-open-api).
 
 - **Actuator** Provides production read metrics, heap dumps, jvm, loggers, thread dumps, mapping, etc. Refer properties for wildcard web exposure. [actuator-docs](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html). Dependency added `spring-boot-starter-actuator`. [actuator-endpoint](http://localhost:8080/actuator)
 

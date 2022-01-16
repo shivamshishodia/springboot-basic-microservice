@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.shishodia.microservice.basic.models.Post;
 import com.shishodia.microservice.basic.models.User;
 
 import org.springframework.hateoas.EntityModel;
@@ -30,5 +31,11 @@ public interface UserResources {
 
     @DeleteMapping(path = "users/{id}")
     public void deleteUser(@PathVariable Integer id);
+
+    @GetMapping(path = "users/{id}/posts")
+    public List<Post> fetchUserPosts(@PathVariable Integer id);
+
+    @PostMapping(path = "users/{id}/posts")
+    public ResponseEntity<Object> createPost(@PathVariable Integer id, @RequestBody Post post);
 
 }

@@ -4,8 +4,10 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import com.shishodia.microservice.basic.data.PostRepository;
 import com.shishodia.microservice.basic.data.UserRepository;
 import com.shishodia.microservice.basic.exceptions.CustomUserNotFoundException;
+import com.shishodia.microservice.basic.models.Post;
 import com.shishodia.microservice.basic.models.User;
 import com.shishodia.microservice.basic.resources.interfaces.UserResources;
 
@@ -24,6 +26,9 @@ public class UserResourcesImpl implements UserResources {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PostRepository postRepository;
+
     // HATEOAS includes link to fetchUsers() mapping as well.
     @Override
     public EntityModel<User> fetchOneUser(Integer id) {
@@ -38,7 +43,7 @@ public class UserResourcesImpl implements UserResources {
             return model;
         }
         // This will throw HttpStatus.NOT_FOUND
-        throw new CustomUserNotFoundException("No users present with this id.");
+        throw new CustomUserNotFoundException("No user present with this id.");
     }
 
     // Throws CustomUserNotFoundException which then handles exception JSON response and HTTP status code
@@ -48,7 +53,7 @@ public class UserResourcesImpl implements UserResources {
         // If no users are found
         if (user.size() == 0) {
             // This will throw HttpStatus.NOT_FOUND
-            throw new CustomUserNotFoundException("No users present");
+            throw new CustomUserNotFoundException("No users present.");
         }
         return user;
     }
@@ -86,6 +91,35 @@ public class UserResourcesImpl implements UserResources {
         //         break;
         //     }
         // }
+    }
+
+    @Override
+    public List<Post> fetchUserPosts(Integer id) {
+        Optional<User> user = userRepository.findById(id);
+        if (!user.isPresent()) {
+            throw new CustomUserNotFoundException("No user present: id-" + id);
+        }
+        return user.get().getPost();
+    }
+
+    @Override
+    public ResponseEntity<Object> createPost(Integer id, Post post) {
+        Optional<User> user = userRepository.findById(id);
+        if (!user.isPresent()) {
+            throw new CustomUserNotFoundException("No user present: id-" + id);
+        }
+        
+        Post userPost = post;
+        userPost.setUser(user.get());
+        postRepository.save(userPost);
+
+        URI location = ServletUriComponentsBuilder
+            .fromCurrentRequest()
+            .path("/{id}")
+            .buildAndExpand(post.getId())
+            .toUri();
+        // Return 201 CREATED along with the id of the new record.
+        return ResponseEntity.created(location).build();
     }
 
 }
