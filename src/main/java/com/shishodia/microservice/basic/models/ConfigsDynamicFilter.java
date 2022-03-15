@@ -3,7 +3,7 @@ package com.shishodia.microservice.basic.models;
 import com.fasterxml.jackson.annotation.JsonFilter;
 
 /*
- * @JsonFilter("SomeConfigsFilter") picked from basic.resources.dynamicFilter.
+ * @JsonFilter("SomeConfigsFilter") picked from basic.resources.FilteredResources.dynamicFilter.
  * In dynamic filtering, properties are ignored as per case basis by mapping values in the http response.
  * See: basic.resources.dynamicFilter.
  */
