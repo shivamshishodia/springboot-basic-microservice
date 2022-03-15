@@ -15,6 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "versioning/")
 public class VersioningResource {
 
+    /**
+     * Summary
+     * 1. URI based versioning (v1/person and v2/person).
+     * 2. Request Parameter based versioning (params = "version=1/2" and @RequestParam).
+     * 3. Header based versioning (headers = "X-API-VERSION=1/2" and @RequestHeader("X-API-VERSION"))
+     * 4. Produces based versioning (produces = "application/vnd.company.app-v1/2+json")
+     */
+
     /*
      * Different URIs for different versions (Twitter). 
      * i.e. "v1/person" and "v2/person".
