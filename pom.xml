@@ -13,7 +13,7 @@
 	<name>basic</name>
 	<description>A Basic Spring Boot Microservice</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -25,11 +25,11 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<!-- Disabled as it asks for Basic Auth for every request. Enable for testing. -->
-		<!-- 
+		<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency> 
+		</dependency>
 		-->
 		<!-- Included for HTTP request validator -->
 		<dependency>
@@ -46,11 +46,11 @@
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
 		<!-- Disabled as it might break for complex models. Enable for testing. -->
-		<!-- 
+		<!--
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
-		</dependency> 
+		</dependency>
 		-->
 		<!-- Included for Swagger UI and docs. -->
 		<dependency>
